@@ -27,7 +27,7 @@ public class Team {
     private final String description;
     private final UniquePersonList teamMembers = new UniquePersonList();
 
-    private final FilteredList<Person> filteredMembers;
+    private final DisplayList<Person> filteredMembers;
     private final TaskList taskList = new TaskList();
 
     private final FilteredList<Task> filteredTasks;
@@ -45,7 +45,8 @@ public class Team {
         checkArgument(isValidTeamDescription(description), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
         this.description = description;
-        filteredMembers = new FilteredList<>(getTeamMembers());
+        filteredMembers = new DisplayList<>(getTeamMembers());
+
         filteredTasks = new FilteredList<>(getTaskList());
     }
 
@@ -66,7 +67,8 @@ public class Team {
         this.teamMembers.setPersons(teamMembers);
         this.taskList.setTasks(tasks);
         this.links.setLinks(links);
-        filteredMembers = new FilteredList<>(getTeamMembers());
+        filteredMembers = new DisplayList<>(getTeamMembers());
+
         filteredTasks = new FilteredList<>(getTaskList());
     }
 
@@ -94,7 +96,7 @@ public class Team {
     }
 
     public FilteredList<Person> getFilteredMemberList() {
-        return filteredMembers;
+        return filteredMembers.getFilteredDisplayList();
     }
 
     /**
@@ -115,6 +117,10 @@ public class Team {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    public void sortMembers() {
+        teamMembers.sortMembers();
     }
 
 

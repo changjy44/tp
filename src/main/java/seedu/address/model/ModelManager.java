@@ -231,6 +231,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortMembers() {
+        addressBook.getTeam().sortMembers();
+    }
+
+    @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         addressBook.getTeam().updateFilteredTaskList(predicate);

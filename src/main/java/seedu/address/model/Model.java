@@ -101,6 +101,8 @@ public interface Model {
     ObservableList<Task> getFilteredTaskList();
     void updateFilteredMembersList(Predicate<Person> predicate);
 
+    void sortMembers();
+
     void updateFilteredTaskList(Predicate<Task> predicate);
 
     ObjectProperty<Team> getTeamAsProperty();
